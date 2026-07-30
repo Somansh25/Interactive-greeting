@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Interactive Greeting</title>
+
+    <link rel="icon" href="data:,">
+    
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.css" integrity="sha512-fzJke8xUCPckf6D3vvPcXdIRhcRZORh0+PxSElFI6Ym6G+IiwQiCurZTu0l7tNPvHVZk0wf7tRu0+ip6h+RrVA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <canvas id="canvas" data-message="{{ message }}" data-theme="{{ theme }}"></canvas>
+
+    <!-- Glassmorphism HUD Overlay -->
+    <div class="hud-container">
+        <div class="hud-bar">
+            <!-- Live Message Input -->
+            <div class="input-group">
+                <i class="fa-solid fa-pen-to-square input-icon"></i>
+                <input type="text" id="messageInput" placeholder="Type message here..." value="{{ message }}" maxlength="50" autocomplete="off">
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Controls Layout -->
+            <div class="controls-row">
+                <div class="select-wrapper">
+                    <i class="fa-solid fa-palette select-icon"></i>
+                    <select id="themeSelect" title="Select Color Theme">
+                        <option value="neon">Neon Party</option>
+                        <option value="cyberpunk">Cyberpunk</option>
+                        <option value="pastel">Pastel Dream</option>
+                        <option value="fire">Fire & Gold</option>
+                    </select>
+                </div>
+
+                <button id="audioBtn" class="icon-btn" title="Toggle Sound">
+                    <i class="fa-solid fa-volume-xmark"></i> <span>Muted</span>
+                </button>
+                <button id="playPauseBtn" class="icon-btn" title="Pause/Play Animation">
+                    <i class="fa-solid fa-pause"></i> <span>Pause</span>
+                </button>
+                <button id="shareBtn" class="icon-btn highlight" title="Copy Share Link">
+                    <i class="fa-solid fa-share-nodes"></i> <span>Share</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Pop Counter Mini-Game Badge -->
+        <div class="score-badge">
+            <i class="fa-solid fa-award"></i> Balloons Popped: <span id="popScore">0</span>
+        </div>
+    </div>
+
+    <!-- Toast Alert Notification -->
+    <div id="toast" class="toast">
+        <i class="fa-solid fa-circle-check"></i> Link copied to clipboard!
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
